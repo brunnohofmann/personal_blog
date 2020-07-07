@@ -3,14 +3,15 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 
-const Generic = ({data: {post}, ...props}) => {
+const Generic = ({ data: { post }, ...props }) => {
   return (
     <Layout>
       <Helmet>
         <title>{post.title}</title>
         <meta name="description" content="Generic Page"/>
-        <base target="_blank" />
+        <base target="_blank"/>
       </Helmet>
+
 
       <div id="main" className="alt">
         <section id="one">
@@ -18,7 +19,7 @@ const Generic = ({data: {post}, ...props}) => {
             <header className="major">
               <h1>{post.title}</h1>
             </header>
-            <div className='post_content' dangerouslySetInnerHTML={{__html: post.content.encoded}}></div>
+            <div className='post_content' dangerouslySetInnerHTML={{ __html: post.content.encoded }}></div>
           </div>
         </section>
       </div>

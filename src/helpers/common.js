@@ -8,7 +8,7 @@ const getImageSrcFromString = (string) => {
 
 const createSlug = (string) => {
   return slugify(string, {
-    replacement: '-',
+    replacement: '_',
     remove: true,
     lower: true,
     strict: true,
