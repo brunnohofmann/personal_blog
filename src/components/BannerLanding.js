@@ -13,5 +13,4 @@ const BannerLanding = (props) => (
         </div>
     </section>
 )
-
 export default BannerLanding
