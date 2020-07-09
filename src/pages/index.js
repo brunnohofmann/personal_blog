@@ -31,10 +31,12 @@ const HomeIndex = ({ data }) => {
               <header className="major">
                 <h3>{post.title}</h3>
               </header>
-              <Link to={`/${createSlug(post.title)}`} className="link primary" />
+              <Link to={`/${createSlug(post.title)}`} className="link primary"/>
             </article>
           ))}
         </section>
+
+        <div className='align-center m5'><Link to="/blog" className="button big">More posts</Link></div>
       </div>
 
     </Layout>
