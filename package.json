@@ -25,7 +25,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "node prebuild && npm run commit_new_files && gatsby build",
+    "build": "node prebuild && npm run commit_new_files & gatsby build",
     "develop": "node prebuild && gatsby develop",
     "format": "prettier --write '**/*.js'",
     "commit_new_files": "git add . && git commit -m 'Adds new post files' && git push origin master",
