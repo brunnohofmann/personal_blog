@@ -10,9 +10,9 @@ const Banner = (props) => (
         <div>
           <h3>This is my personal blog site. Here I write about tech and things I do in my daily life ;)</h3>
           <h5>Fell free to contact me, give-me some feedback, hire me, buy me a coffee...</h5>
-          <ul className="actions">
-            <li><a href="#one" className="button next scrolly">Contact me</a></li>
-          </ul>
+          {/*<ul className="actions">*/}
+          {/*  <li><a href="#one" className="button next scrolly">Contact me</a></li>*/}
+          {/*</ul>*/}
         </div>
 
       </div>
