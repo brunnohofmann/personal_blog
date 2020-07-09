@@ -7,27 +7,25 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     query {
-      allFeedHofmannMedium {
-        nodes {
+      data: allPostsYaml {
+        posts: nodes {
           title
-          link
-          content {
-            encoded
-          }
-          pubDate
           id
         }
       }
     }
   `)
 
-  result.data.allFeedHofmannMedium.nodes.forEach(post => {
+  result.data.data.posts.forEach(post => {
+    const slug = createSlug(post.title)
+    console.log('Created page: ', slug)
+
     createPage({
-      path: `${createSlug(post.title)}`,
+      path: slug,
       component: blogPostTemplate,
       context: {
         slug: createSlug(post.title),
-        id: post.id
+        id: post.id,
       },
     })
   })

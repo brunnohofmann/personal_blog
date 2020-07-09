@@ -18,20 +18,15 @@ module.exports = {
         icon: 'src/assets/images/website-icon.png', // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-source-rss-feed`,
-      options: {
-        url: `https://medium.com/feed/@brunnohofmann`,
-        name: `HofmannMedium`,
-      },
-    },
-    {
-      resolve: `gatsby-source-medium`,
-      options: {
-        username: `@brunnohofmann`,
-      },
-    },
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `./src/content/posts/`,
+      },
+    },
   ],
 }

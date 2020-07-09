@@ -8,10 +8,9 @@ const Generic = ({ data: { post }, ...props }) => {
     <Layout>
       <Helmet>
         <title>{post.title}</title>
-        <meta name="description" content="Generic Page"/>
-        <base target="_blank"/>
+        <meta name="description" content="Generic Page" />
+        <base target="_blank" />
       </Helmet>
-
 
       <div id="main" className="alt">
         <section id="one">
@@ -19,11 +18,13 @@ const Generic = ({ data: { post }, ...props }) => {
             <header className="major">
               <h1>{post.title}</h1>
             </header>
-            <div className='post_content' dangerouslySetInnerHTML={{ __html: post.content.encoded }}></div>
+            <div
+              className="post_content"
+              dangerouslySetInnerHTML={{ __html: post.content_encoded }}
+            ></div>
           </div>
         </section>
       </div>
-
     </Layout>
   )
 }
@@ -31,16 +32,13 @@ const Generic = ({ data: { post }, ...props }) => {
 export default Generic
 
 export const query = graphql`
-    query ($id: String!) {
-        post: feedHofmannMedium(id: {eq : $id}) {
-            title
-            pubDate
-            link
-            id
-            guid
-            content {
-                encoded
-            }
-        }
+  query($id: String!) {
+    post: postsYaml(id: { eq: $id }) {
+      title
+      link
+      pubDate
+      id
+      content_encoded
     }
+  }
 `

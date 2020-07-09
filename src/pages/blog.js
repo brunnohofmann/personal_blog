@@ -7,23 +7,28 @@ import BannerBlog from '../components/BannerBlog'
 import { createSlug, getImageSrcFromString } from '../helpers/common'
 
 const Blog = ({ data }) => {
-  const { allPosts } = data
+  const {
+    allPosts: { posts },
+  } = data
 
   return (
     <Layout>
       <Helmet>
         <title>Brunno Hofmann - Blog</title>
-        <meta name="description" content="Here I wrote about tech and things I do in my daily life ;)"/>
+        <meta
+          name="description"
+          content="Here I wrote about tech and things I do in my daily life ;)"
+        />
       </Helmet>
 
-      <BannerBlog/>
+      <BannerBlog />
 
       <div id="main">
         <section id="two" className="spotlights">
-          {allPosts.nodes.map(post => (
+          {posts.map(({ post }) => (
             <section>
               <Link to={`/${createSlug(post.title)}`} className="image">
-                <img src={getImageSrcFromString(post.content.encoded)} alt=""/>
+                <img src={getImageSrcFromString(post.content_encoded)} alt="" />
               </Link>
               <div className="content">
                 <div className="inner">
@@ -31,16 +36,21 @@ const Blog = ({ data }) => {
                     <h3>{post.title}</h3>
                   </header>
                   <ul className="actions">
-                    <li><Link to={`/${createSlug(post.title)}`} className="button">Read more</Link></li>
+                    <li>
+                      <Link
+                        to={`/${createSlug(post.title)}`}
+                        className="button"
+                      >
+                        Read more
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
             </section>
-          ))
-          }
+          ))}
         </section>
       </div>
-
     </Layout>
   )
 }
@@ -48,17 +58,17 @@ const Blog = ({ data }) => {
 export default Blog
 
 export const query = graphql`
-    query MyBlogQuery {
-        allPosts: allFeedHofmannMedium {
-            nodes {
-                title
-                link
-                content {
-                    encoded
-                }
-                pubDate
-                id
-            }
+  query MyBlogQuery {
+    allPosts: allFile(sort: { fields: name, order: DESC }) {
+      posts: nodes {
+        post: childPostsYaml {
+          title
+          link
+          content_encoded
+          pubDate
+          id
         }
+      }
     }
+  }
 `

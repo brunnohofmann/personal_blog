@@ -6,7 +6,9 @@ import Banner from '../components/Banner'
 import { createSlug, getImageSrcFromString } from '../helpers/common'
 
 const HomeIndex = ({ data }) => {
-  const { allFeedHofmannMedium } = data
+  const {
+    allPostsQuery: { posts },
+  } = data
 
   return (
     <Layout>
@@ -15,30 +17,42 @@ const HomeIndex = ({ data }) => {
         meta={[
           {
             name: 'description',
-            content: 'This is my personal blog site. Here I wrote about tech and things I do in my daily life ;)',
+            content:
+              'This is my personal blog site. Here I wrote about tech and things I do in my daily life ;)',
           },
           { name: 'keywords', content: 'developer, software' },
         ]}
-      >
-      </Helmet>
+      ></Helmet>
 
-      <Banner/>
+      <Banner />
 
       <div id="main">
         <section id="one" className="tiles">
-          {allFeedHofmannMedium.nodes.map(post => (
-            <article style={{ backgroundImage: `url(${getImageSrcFromString(post.content.encoded)})` }}>
+          {posts.map(({ post }) => (
+            <article
+              style={{
+                backgroundImage: `url(${getImageSrcFromString(
+                  post.content_encoded
+                )})`,
+              }}
+            >
               <header className="major">
-                <h3>{post.title}</h3>
+                <h3>{post.id}</h3>
               </header>
-              <Link to={`/${createSlug(post.title)}`} className="link primary"/>
+              <Link
+                to={`/${createSlug(post.title)}`}
+                className="link primary"
+              />
             </article>
           ))}
         </section>
 
-        <div className='align-center m5'><Link to="/blog" className="button big">More posts</Link></div>
+        <div className="align-center m5">
+          <Link to="/blog" className="button big">
+            More posts
+          </Link>
+        </div>
       </div>
-
     </Layout>
   )
 }
@@ -46,18 +60,17 @@ const HomeIndex = ({ data }) => {
 export default HomeIndex
 
 export const query = graphql`
-    query IndexQuery {
-        allFeedHofmannMedium(limit: 6) {
-            nodes {
-                title
-                link
-                content {
-                    encoded
-                }
-                pubDate
-                id
-            }
-            totalCount
+  query IndexQuery {
+    allPostsQuery: allFile(sort: { fields: name, order: DESC }, limit: 6) {
+      posts: nodes {
+        post: childPostsYaml {
+          title
+          link
+          content_encoded
+          pubDate
+          id
         }
+      }
     }
+  }
 `
