@@ -37,7 +37,7 @@ const HomeIndex = ({ data }) => {
               }}
             >
               <header className="major">
-                <h3>{post.id}</h3>
+                <h3>{post.title}</h3>
               </header>
               <Link
                 to={`/${createSlug(post.title)}`}
