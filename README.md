@@ -1,6 +1,6 @@
 # Personal Blog
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1959422e-55f9-4ac7-bae7-d1afe48914fc/deploy-status)](https://app.netlify.com/sites/focused-feynman-872564/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1959422e-55f9-4ac7-bae7-d1afe48914fc/deploy-status)](https://brunnohofmann.com/)
 
 **This is a my personal blog, based on gatsby-stater-forty template**
 
